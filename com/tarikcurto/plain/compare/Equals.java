@@ -16,14 +16,52 @@
 
 package tarikcurto.plain.compare;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Tarik Curto - centro.tarik at live.com
  */
-public class Equals {
+public class Equals implements DataInterface{
     
+    /**
+     * Differences of strings.
+     * Key referr to index difference.
+     */
+    private ArrayList<String> data = new ArrayList<>();
+    
+    /**
+     * Equals constructor.
+     */
     public Equals(){
         
+    }
+    
+    /**
+     * 
+     * @return Equals strings.
+     */
+    @Override
+    public ArrayList<String> get(){
+        return data;
+    }
+    
+    /**
+     * 
+     * @param data Equals strings. 
+     */
+    @Override
+    public void set(ArrayList<String> data){
+        this.data = data;
+    }
+    
+    /**
+     * 
+     * @param data Equal string. 
+     */
+    @Override
+    public void add(String data){
+        this.data.add(data);
     }
     
 }

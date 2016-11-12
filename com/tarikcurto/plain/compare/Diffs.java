@@ -16,13 +16,49 @@
 
 package tarikcurto.plain.compare;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Tarik Curto - centro.tarik at live.com
  */
 public class Diffs {
     
+     /**
+     * Differences of strings.
+     * Key (i) referr to index difference.
+     * Key (j) referr to difference of plain index. 
+     */
+    private ArrayList<String[]> data = new ArrayList<>();
+    
+    /**
+     * Diffs constructor.
+     */
     public Diffs(){
         
+    }
+    
+    /**
+     * 
+     * @return Group of diffs strings.
+     */
+    public ArrayList<String[]> get(){
+        return data;
+    }
+    
+    /**
+     * 
+     * @param data Group of diffs strings. 
+     */
+    public void set(ArrayList<String[]> data){
+        this.data = data;
+    }
+    
+    /**
+     * 
+     * @param data Group of diff strings.
+     */
+    public void add(String[] data){
+        this.data.add(data);
     }
 }

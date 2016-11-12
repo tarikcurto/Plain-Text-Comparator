@@ -16,18 +16,63 @@
 
 package tarikcurto.plain.compare;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Tarik Curto - centro.tarik at live.com
  */
-public class Comparator {
+public class Comparator implements DataInterface{
     
-    private Equals equals = new Equals();
+    /**
+     * Compared strings.
+     */
+    private ArrayList<String> data = new ArrayList<>(); 
     
-    private Diffs diffs = new Diffs();
+    /**
+     * Instantiated Equals Class.
+     */
+    public Equals equals = new Equals();
     
+    /**
+     * Instantiated Difs Class.
+     */
+    public Diffs diffs = new Diffs();
+    
+    
+    /**
+     * Comprator constructor.
+     */
     public Comparator() {
         
+    }
+    
+    /**
+     * 
+     * @return Compared strings.
+     */
+
+    @Override
+    public ArrayList<String> get(){
+        return data;
+    }
+    
+    /**
+     * 
+     * @param data Compared strings. 
+     */
+    @Override
+    public void set(ArrayList<String> data){
+        this.data = data;
+    }
+    
+    /**
+     * 
+     * @param data Compared string. 
+     */
+    @Override
+    public void add(String data){
+        this.data.add(data);
     }
     
 }
