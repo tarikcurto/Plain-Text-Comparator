@@ -61,4 +61,38 @@ public class Diffs {
     public void add(String[] data){
         this.data.add(data);
     }
+    
+    /**
+     * Fix last difference group (if exist).
+     * 
+     * @param equals 
+     */
+    public void fix(Equals equals)
+    {
+        
+        //Get last indexes.
+        int lastEqualK = equals.get().size() - 1;
+        int lastDiffK = data.size() - 1;
+        
+        if(lastEqualK < 0 || lastDiffK < 0){
+            return;
+        }
+        
+        //Get last diff group.
+        String[] diffGroup = data.get(lastDiffK);
+        
+        //Get diffs split lengths.
+        int lengthNode = diffGroup[0].indexOf(equals.get(lastEqualK));
+        int lengthClient = diffGroup[1].indexOf(equals.get(lastEqualK));
+        
+        //Split diff group.
+        String strNode = diffGroup[0].substring(0,lengthNode);
+        String strClient = diffGroup[1].substring(0,lengthClient);
+        
+        //Define diff group.
+        String[] diffGroupUpdated = {strNode,strClient};
+        
+        //Update diff group.
+        data.set(lastDiffK, diffGroupUpdated);
+    }
 }

@@ -48,6 +48,14 @@ public class Equals implements DataInterface{
     
     /**
      * 
+     * @return Equal strings by index.
+     */
+    public String get(int index){
+        return data.get(index);
+    }
+    
+    /**
+     * 
      * @param data Equals strings. 
      */
     @Override
