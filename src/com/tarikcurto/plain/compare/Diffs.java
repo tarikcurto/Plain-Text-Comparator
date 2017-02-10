@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package tarikcurto.plain.compare;
+package com.tarikcurto.plain.compare;
 
 import java.util.ArrayList;
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 Tarik Curto.
+ * Copyright 2016 Tarik Curto
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,20 +13,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package tarikcurto.plain.compare;
 
+package test;
+
+import com.tarikcurto.plain.compare.Comparator;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  *
  * @author Tarik Curto - centro.tarik at live.com
  */
-interface DataInterface {
+public class Test {
+
+    public Test(){
+        
+        Comparator comparator = new Comparator();
+        comparator.add("Hello World, good job!");
+        comparator.add("Hello Java, good task!");
+        comparator.compare();
+        
+        ArrayList<String> equals = comparator.equals.get();
+        ArrayList<String[]> diffs = comparator.diffs.get();
+    }
     
-    public abstract ArrayList<String> get();
-    
-    public abstract void set(ArrayList<String> data);
-    
-    public abstract void add(String data);
+    public static void main(String[] args) {
+        Test test = new Test();
+    }
     
 }
