@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package tarikcurto.plain.compare;
+package com.tarikcurto.plain.compare;
 
 import java.util.ArrayList;
 
@@ -21,7 +21,7 @@ import java.util.ArrayList;
  *
  * @author Tarik Curto - centro.tarik at live.com
  */
-public abstract class DataAbstract {
+interface DataInterface {
     
     public abstract ArrayList<String> get();
     

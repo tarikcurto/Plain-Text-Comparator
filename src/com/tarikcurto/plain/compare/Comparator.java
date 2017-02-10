@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package tarikcurto.plain.compare;
+package com.tarikcurto.plain.compare;
 
 import java.util.Arrays;
 import java.util.ArrayList;
@@ -74,29 +74,33 @@ public class Comparator implements DataInterface {
     }
 
     /**
-     * Use the method when you have defined your data to compare.
+     * Use the method only when you have defined your data to compare.
+     * 
+     * @return Comparator
      */
-    public void doRun() {
-        doRun(data);
+    public Comparator compare() {
+        
+        compare(data);
+        return this;
     }
 
     /**
      * Compare data to asign work.
      * @param data
      */
-    private void doRun(ArrayList<String> data) {
+    private void compare(ArrayList<String> data) {
 
         int parallels = checkParallel(data);
 
         if (parallels > 0) {
 
             //Process positive coincidence.
-            doPositive(parallels, data);
+            processMatch(parallels, data);
 
         } else {
 
-            //Process bad coincidence.
-            doNegative(data);
+            //Process no coincidence.
+            tryFindMatch(data);
 
         }
     }
@@ -107,14 +111,16 @@ public class Comparator implements DataInterface {
      * @param coincidenceLength
      * @param strs
      */
-    private void doPositive(int coincidenceLength, ArrayList<String> strs) {
+    private void processMatch(int coincidenceLength, ArrayList<String> strs) {
 
         //Split strings.
         ArrayList<String> splitNode = split(coincidenceLength, strs.get(0));
         ArrayList<String> splitClient = split(coincidenceLength, strs.get(1));
 
         //Define equals of execution.
-        equals.add(splitNode.get(0));
+        if(splitNode.get(0).length() > 0){
+            equals.add(splitNode.get(0));
+        }
 
         //Repair last difference group by last equal.
         diffs.fix(equals);
@@ -124,10 +130,13 @@ public class Comparator implements DataInterface {
             splitNode.get(1),
             splitClient.get(1)
         };
-        diffs.add(executionDifferences);
+        
+        if(executionDifferences[1].length() > 0 || executionDifferences[0].length() > 0){
+            diffs.add(executionDifferences);
+        }
 
         //Re-process string by executionDifferences.
-        doRun(new ArrayList<>(Arrays.asList(executionDifferences)));
+        compare(new ArrayList<>(Arrays.asList(executionDifferences)));
     }
 
     /**
@@ -135,7 +144,7 @@ public class Comparator implements DataInterface {
      *
      * @param strs
      */
-    private void doNegative(ArrayList<String> strs) {
+    private void tryFindMatch(ArrayList<String> strs) {
 
         //Loop to split node.
         for (int i = 0; i < (strs.get(0)).length(); i++) {
@@ -146,23 +155,20 @@ public class Comparator implements DataInterface {
             //Define strClient.
             String strClient = strs.get(1);
 
-            //Loop to split client.
+            //Loop to split client and compare with node.
             for (int j = 0; j < strClient.length(); j++) {
 
-                //Define check array
                 ArrayList<String> strsToCheck = new ArrayList<>();
-
-                //Define check str node.
+                
                 strsToCheck.add(splitStrNode.get(1));
 
-                //Define check  str client.
                 ArrayList<String> splitStrClient = split(j, strClient);
                 strsToCheck.add(splitStrClient.get(1));
 
                 int coincidence = checkParallel(strsToCheck);
 
                 if (coincidence > 0) {
-                    doRun(strsToCheck);
+                    compare(strsToCheck);
                     return;
                 }
 
@@ -236,9 +242,7 @@ public class Comparator implements DataInterface {
 
         ArrayList<String> data = new ArrayList<String>() {
             {
-                //Part 1.
                 add(piece.substring(0, index));
-                //Part 2.
                 add(piece.substring(index));
             }
         };
