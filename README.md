@@ -1,9 +1,6 @@
 # Plain Text Comparator
 Get equals & differences of strings vector on JAVA.
 
-
-----------
-
 **Use:**
 
     import com.tarikcurto.plain.compare.Comparator;
